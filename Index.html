@@ -1,0 +1,798 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="City Taxi - Fast and reliable taxi service in your city. Book your ride now!">
+    <meta name="keywords" content="Taxi, Ride, Transport, City Taxi, Airport Transfers">
+
+    <title>City Taxi</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet"> <!-- Google Font -->
+    <!-- <link rel="stylesheet" type="text/css" href="toggle2.css">  -->
+    <!-- <link rel="stylesheet" href="toggle2.css"> -->
+    <style>
+        hr { 
+			height: 4px; 
+            margin: none;
+			background-color: yellow; 
+			border-width: 2px;  
+		} 
+    .dark-mode {
+        background-color: #111;
+        color: #eee;
+    }
+
+    .dark-mode header,
+    .dark-mode nav,
+    .dark-mode footer {
+        background-color: #222 !important;
+    }
+
+    .dark-mode .service-card,
+    .dark-mode .pricing-card,
+    .dark-mode .testimonial {
+        background-color: #333;
+        color: #ddd;
+    }
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #f5f5f5;
+            overflow-x: hidden; /* Prevent horizontal scroll */
+        }
+
+        /* Header with Background Video */
+        header {
+            position: relative;
+            height: 45vh;
+            background: #000;
+            padding-top: 10px;
+            color: white;
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            background-image: url('hero-background.jpg');
+            background-size: cover;
+            background-position: center;
+            text-shadow: 3px 3px 8px rgba(0, 0, 0, 0.5);
+        }
+
+        header h1 {
+            font-size: 5rem;
+            margin: 0;
+            font-weight: 700;
+        }
+
+        header p {
+            font-size: 1.5rem;
+            margin: 10px 0;
+        }
+
+        /* Additional styling for the color mode toggle */
+.btn-container {
+    position: absolute;
+    top: 15px;
+    right: 30px;
+    padding: 10px;
+    z-index: 10;
+}
+
+.switch {
+    display: inline-block;
+    position: relative;
+}
+
+.switch input {
+    display: none;
+}
+
+.btn-color-mode-switch-inner {
+    display: block;
+    width: 60px;
+    height: 30px;
+    background-color: #ddd;
+    border-radius: 30px;
+    position: relative;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn-color-mode-switch-inner:before {
+    content: attr(data-off);
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    font-size: 12px;
+    color: #333;
+}
+
+.btn-color-mode-switch-inner:after {
+    content: attr(data-on);
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    font-size: 12px;
+    color: #fff;
+}
+
+.switch input:checked + .btn-color-mode-switch-inner {
+    background-color: #4caf50;
+}
+
+.switch input:checked + .btn-color-mode-switch-inner:before {
+    content: attr(data-on);
+    left: auto;
+    right: 5px;
+}
+
+.switch input:checked + .btn-color-mode-switch-inner:after {
+    content: attr(data-off);
+    left: 5px;
+    right: auto;
+}
+
+.switch input:checked + .btn-color-mode-switch-inner:before,
+.switch input:checked + .btn-color-mode-switch-inner:after {
+    transition: all 0.3s ease;
+}
+
+        .cta-button {
+            font-size: clamp(1rem, 2.5vw, 1.25rem);
+            padding: 10px 20px;
+            background: linear-gradient(135deg, #4caf50, #009688);
+            padding: 15px 30px;
+            border: none;
+            border-radius: 30px;
+            color: white;
+            font-size: 1.25rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: aria-label;
+        }
+
+        .cta-button:hover {
+            background: linear-gradient(135deg, #66bb6a, #388e3c);
+            transform: scale(1.1);
+        }
+
+        /* Navigation Styling */
+        .primary-navigation {
+            display: flex;
+            justify-content: space-between; /* Adjust to space out content */
+            align-items: center;
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 10px 30px; /* Added padding on left and right */
+            z-index: 2;
+            position: relative;
+        }
+
+        .primary-navigation ul {
+            list-style-type: none;
+            margin-left: 44px;
+            display: flex;
+            gap: 30px;
+            flex-grow: 1; /* Allows the list to grow and take up available space */
+        }
+
+        .primary-navigation .login, .primary-navigation .sign {
+            margin-left: 20px; /* Maintain the margin between buttons */
+            padding: 12px 25px;
+            border: none;
+            border-radius: 30px;
+            background: linear-gradient(135deg, #009688, #4caf50);
+            color: white;
+            font-size: 2vmin;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .primary-navigation ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 3vmin;
+            font-weight: 500;
+            padding: 10px 20px;
+            transition: all 0.3s ease;
+            border-radius: 25px;
+        }
+
+        .primary-navigation ul li a:hover {
+            background-color: #4caf50;
+            color: white;
+        }
+
+        .login:hover, .sign:hover {
+            background: linear-gradient(135deg, #388e3c, #66bb6a);
+            transform: scale(1.1);
+        }
+
+        /* Slideshow container */
+        .slideshow-container {
+            position: relative;
+            max-width: 100%;
+            margin: auto;
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .slideshow-container img {
+            width: 100%;
+            height: auto;
+}
+
+
+.slides {
+    width: 100%;
+    height: 90vh;
+    object-fit: cover;
+    display: none;
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+}
+
+        .slides.fade {
+            animation: fadeIn 1s forwards;
+        }
+
+        .slides.zoom {
+            animation: zoomIn 1s forwards;
+        }
+
+        .slides.slide {
+            animation: slideIn 1s forwards;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes zoomIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+
+        .prev, .next {
+            position: absolute;
+            top: 50%;
+            padding: 20px;
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            font-size: 30px;
+            border: none;
+            cursor: pointer;
+            z-index: 2;
+            border-radius: 50%;
+            user-select: none;
+            transform: translateY(-50%);
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .prev:hover, .next:hover {
+            background-color: #4caf50;
+            transform: translateY(-50%) scale(1.2);
+        }
+
+        .prev {
+            left: 10px;
+        }
+
+        .next {
+            right: 10px;
+        }
+
+        /* Customer Testimonials Section */
+        .testimonials-section {
+            background-color: #fff;
+            padding: 60px 20px;
+            text-align: center;
+        }
+
+        .testimonials-section h2 {
+            font-size: 3rem;
+            color: #333;
+            margin-bottom: 30px;
+        }
+
+        .testimonial {
+            display: inline-block;
+            width: 28%;
+            margin: 10px;
+            background-color: #f4f4f4;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .testimonial img {
+            border-radius: 50%;
+            width: 80px;
+            height: 80px;
+            margin-bottom: 20px;
+        }
+
+        .testimonial p {
+            font-size: 1.1rem;
+            color: #555;
+            margin-bottom: 10px;
+        }
+
+        .testimonial h4 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .pricing-section {
+            background-color: #f8f8f8;
+            padding: 60px 20px;
+            text-align: center;
+        }
+
+        .pricing-section h2 {
+            font-size: 3rem;
+            color: #333;
+            margin-bottom: 30px;
+        }
+
+        .pricing-card {
+            display: inline-block;
+            width: 28%;
+            margin: 10px;
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .pricing-card h3 {
+            font-size: 2rem;
+            margin-bottom: 15px;
+            color: #4caf50;
+        }
+
+        .pricing-card p {
+            font-size: 1.1rem;
+            color: #777;
+            margin-bottom: 25px;
+        }
+
+        .pricing-card .price {
+            font-size: 2rem;
+            font-weight: 600;
+            color: #333;
+        }
+
+        /* Service Cards */
+        .services-section {
+            display: flex;
+            justify-content: space-around;
+            margin: 50px 0;
+            padding: 0 30px;
+        }
+
+        .service-card {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            width: 30%;
+            transition: transform 0.3s ease;
+        }
+
+        .service-card:hover {
+            transform: scale(1.05);
+        }
+
+        .service-card img {
+            width: 80%;
+            border-radius: 5px;
+            transition: filter 0.3s ease;
+            filter: blur(2px);
+        }
+
+        .service-card:hover img {
+            filter: none;
+        }
+
+        .service-card h3 {
+            font-size: 1.5rem;
+            margin: 20px 0;
+            font-weight: 600;
+        }
+
+        .service-card p {
+            font-size: 1rem;
+            color: #777;
+        }
+
+
+        /* Footer Section */
+        footer {
+            background-color: #222;
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        footer .social-icons {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        footer .social-icons li {
+            display: inline;
+            margin: 0 15px;
+        }
+
+        footer .social-icons a {
+            color: white;
+            font-size: 1.5rem;
+            text-decoration: none;
+        }
+
+        footer .social-icons a:hover {
+            color: #4caf50;
+        }
+
+        
+        table {
+            width: 100vmin;
+            border-spacing: 25px;
+        }
+
+        .booking {
+            background-color: black;
+        }
+
+        label {
+            color: #4caf50;
+            font-size: 2vmin;
+        }
+
+        .submit{
+            background-color: #4caf50;
+            height: 6vmin;
+            width: 15vmin;
+            border-radius: 5vmin;
+            color: white;
+            font-size: 2.5vmin;
+        }
+
+        input{
+            border-radius: 3vmin;
+            height: 4vmin;
+            width: 35vmin;
+        }
+
+        /* Responsive design */
+        @media screen and (max-width: 768px) {
+            .primary-navigation ul {
+                flex-direction: column;
+                gap: 15px;
+                align-items: center;  /* Center the links */
+            }
+
+            .primary-navigation .login, .primary-navigation .sign {
+                margin-left: 0;
+                margin-top: 10px;
+                width: 80%;  /* Make buttons take up more space on small screens */
+                text-align: center;
+            }
+
+             /* Hamburger Menu */
+        .hamburger-menu {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            transform: translateY(0); /* or remove if unnecessary */
+
+
+        }
+
+        .hamburger-menu div {
+            width: 30px;
+            height: 5px;
+            background-color: white;
+            border-radius: 5px;
+        }
+
+            .hamburger-menu {
+                display: flex;
+            }
+
+            .primary-navigation ul {
+                display: none;
+                flex-direction: column;
+                gap: 10px;
+                align-items: center;
+                width: 100%;
+                background-color: rgba(0, 0, 0, 0.8);
+                position: absolute;
+                top: 0;
+                left: 0;
+                padding: 50px 0;
+                z-index: 1;
+            }
+
+            .primary-navigation ul.show {
+                display: flex;
+            }
+
+            .primary-navigation ul li a {
+                font-size: 4vmin;
+            }
+
+            .submit {
+                width: 100%; /* Make the submit button full width */
+            }
+
+            .testimonial {
+                width: 90%;
+            }
+
+            .pricing-card {
+                width: 90%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>City Taxi</h1>
+        <p>Your ride, anytime, anywhere</p>
+        <button class="cta-button">Book Your Ride</button>
+        <div class="btn-container" style="position: absolute; top: 15px; right: 30px; padding: 10px;">
+            <label class="switch btn-color-mode-switch">
+                <input type="checkbox" name="color_mode" id="color_mode" value="1">
+                <span class="btn-color-mode-switch-inner" data-on="Dark" data-off="Light"></span>
+            </label>
+        </div>
+    </header>
+    
+    <hr>
+
+    <nav class="primary-navigation">
+        <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">Services</a></li>
+            <li><a href="#">About Us</a></li>
+            <li><a href="Contact Us.html">Contact Us</a></li>
+        </ul>
+        <div class="hamburger-menu" onclick="toggleMenu()">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+        <a href="Login.php" class="login">Login</a>
+        <button class="sign"><a href="signup.php" style="color: white; text-decoration: none;">Sign Up</a></button>
+    </nav>
+
+    <div class="slideshow-container">
+        <img class="slides fade" src="photo 3.jpg" alt="Taxi 1">
+        <img class="slides zoom" src="photo 2.jpg" alt="Taxi 2">
+        <img class="slides slide" src="photo 1.jpg" alt="Taxi 3">
+
+        <!-- Navigation arrows -->
+        <button class="prev" onclick="changeSlide(-1)" aria-label="Previous Slide">&#10094;</button>
+        <button class="next" onclick="changeSlide(1)" aria-label="Next Slide">&#10095;</button>
+    </div>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials-section">
+        <h2>What Our Customers Are Saying</h2>
+        <div class="testimonial">
+            <img src="customer1.jpg" alt="Customer 1">
+            <p>"City Taxi provided me with the most reliable and comfortable ride. Highly recommended!"</p>
+            <h4>John Doe</h4>
+        </div>
+        <div class="testimonial">
+            <img src="customer2.jpg" alt="Customer 2">
+            <p>"I used City Taxi for my airport transfer, and the service was fantastic! On time and great driver."</p>
+            <h4>Jane Smith</h4>
+        </div>
+        <div class="testimonial">
+            <img src="customer3.jpg" alt="Customer 3">
+            <p>"Affordable, fast, and very friendly drivers. Will definitely use them again!"</p>
+            <h4>Mark Johnson</h4>
+        </div>
+    </section>
+
+    <section class="services-section">
+        <div class="service-card animate">
+            <img src="city.jpg" alt="City Taxi Service">
+            <h3>City Transportation</h3>
+            <p>Reliable and fast transportation around the city, available 24/7.</p>
+        </div>
+        <div class="service-card animate">
+            <img src="Air.jpg" alt="Airport Transfers">
+            <h3>Airport Transfers</h3>
+            <p>Quick and comfortable rides to and from the airport.</p>
+        </div>
+        <div class="service-card animate">
+            <img src="lax.jpg" alt="Luxury Rides">
+            <h3>Luxury Rides</h3>
+            <p>Travel in style with our premium vehicles and services.</p>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section class="pricing-section">
+        <h2>Our Pricing Plans</h2>
+        <div class="pricing-card">
+            <h3>Basic</h3>
+            <p>For short city rides</p>
+            <p class="price">$10 / Ride</p>
+        </div>
+        <div class="pricing-card">
+            <h3>Standard</h3>
+            <p>For airport and long-distance transfers</p>
+            <p class="price">$30 / Ride</p>
+        </div>
+        <div class="pricing-card">
+            <h3>Luxury</h3>
+            <p>For premium experiences</p>
+            <p class="price">$50 / Ride</p>
+        </div>
+    </section>
+
+    <div class="booking">
+        <h1 align="center" style="color: white; padding-top: 45px;">Book Taxi Now</h1>
+        <div>
+            <table>
+                <tr>
+                    <td>
+                        <label>When:</label>
+                    </td>
+                    <td>
+                        <input type="date">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label>Hour:</label>
+                    </td>
+                    <td>
+                        <input type="time">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label>Pick-Up Location:</label>
+                    </td>
+                    <td>
+                        <input type="text">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label>Drop Location:</label>
+                    </td>
+                    <td>
+                        <input type="text">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label>Phone-Number:</label>
+                    </td>
+                    <td>
+                        <input type="tel" placeholder="Enter phone number" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}">
+
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <button class="submit">Submit</button>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 City Taxi. All rights reserved.</p>
+        <ul class="social-icons">
+            <li><a href="#">Facebook</a></li>
+            <li><a href="#">Instagram</a></li>
+            <li><a href="#">Twitter</a></li>
+        </ul>
+    </footer>
+
+    <script>
+    const toggle = document.getElementById('color_mode');
+    toggle.addEventListener('change', () => {
+        document.body.classList.toggle('dark-mode');
+    });
+        // Toggle navigation menu
+        function toggleMenu() {
+            let menu = document.querySelector('.primary-navigation ul');
+            menu.classList.toggle('show');
+        }
+
+        let slideIndex = 0;
+
+        function showSlides() {
+            let slides = document.getElementsByClassName("slides");
+            if (slideIndex >= slides.length) { slideIndex = 0; }
+            if (slideIndex < 0) { slideIndex = slides.length - 1; }
+
+            // Hide all slides
+            for (let i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";
+                slides[i].classList.remove("fade", "zoom", "slide");
+            }
+
+            // Show the current slide and add its respective transition
+            slides[slideIndex].style.display = "block";
+            slides[slideIndex].classList.add("fade"); // Default transition
+            if (slideIndex === 1) {
+                slides[slideIndex].classList.add("zoom");
+            } else if (slideIndex === 2) {
+                slides[slideIndex].classList.add("slide");
+            }
+        }
+
+        function changeSlide(n) {
+            slideIndex += n;
+            showSlides();
+        }
+
+        // Initial display of slides
+        showSlides();
+
+        // Auto slide every 3 seconds
+        setInterval(() => {
+            slideIndex++;
+            showSlides();
+        }, 3000);
+
+        // Toggle navigation menu
+        function toggleMenu() {
+            let menu = document.querySelector('.primary-navigation ul');
+            menu.classList.toggle('show');
+        }
+
+        // Scroll animation for services section
+        window.addEventListener('scroll', function() {
+            let elements = document.querySelectorAll('.animate');
+            elements.forEach(function(element) {
+                if (element.getBoundingClientRect().top < window.innerHeight - 100) {
+                    element.classList.add('visible');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
